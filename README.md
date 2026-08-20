@@ -1,2 +1,2 @@
-# Curso de Angular del ITLA - JORGE DOTEL
-Welcome to the Angular repository. This project is for Curso de Angular del ITLA - JORGE DOTEL.
+# Curso de Angular del ITLA 
+Bienvenido al repositorio Angular. Este proyecto es para el Curso de Angular del ITLA. 
