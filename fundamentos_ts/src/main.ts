@@ -1,16 +1,17 @@
-//Clasificar una actividad
-const estado = "pendiente";
-const prioridad = "alta";
-const diasRestantes = 0;
+//Elegir caminos con if, else if y else
+//La cadena que sale bien
+function describirPrioridad(nivel: number): string {
+  if (nivel >= 8) {
+    return "alta";
+  } else if (nivel >= 4) {
+    return "media";
+  } else {
+    return "baja";
+  }
+}
 
-const estaPendiente = estado === "pendiente";
-const esUrgente = prioridad === "alta";
-const venceHoy = diasRestantes === 0;
-
-const requiereAtencion = estaPendiente && (esUrgente || venceHoy);
-const sePuedeArchivar = !estaPendiente && !venceHoy;
-
-console.log(estaPendiente);
-console.log(venceHoy);
-console.log(requiereAtencion);
-console.log(sePuedeArchivar);
+console.log(describirPrioridad(9));
+console.log(describirPrioridad(8));
+console.log(describirPrioridad(4));
+console.log(describirPrioridad(3));
+console.log(describirPrioridad(0));
