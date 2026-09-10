@@ -1,26 +1,23 @@
-// Todo junto en un solo archivo para que sea más fácil de ejecutar y probar
-function obtenerPrimerTitulo(titulos: string[]): string {
-  if (titulos.length === 0) {
-    return "Sin actividades";
+//Contar y clasificar en una pasada
+function resumirEstados(estados: string[]): string {
+  let pendientes = 0;
+  let completadas = 0;
+  let otras = 0;
+
+  for (const estado of estados) {
+    if (estado === "pendiente") {
+      pendientes = pendientes + 1;
+    } else if (estado === "completada") {
+      completadas = completadas + 1;
+    } else {
+      otras = otras + 1;
+    }
   }
-  return titulos[0] ?? "Sin actividades";
+
+  return `${pendientes} pendientes · ${completadas} completadas · ${otras} otras`;
 }
 
-function describirCantidad(titulos: string[]): string {
-  if (titulos.length === 0) {
-    return "No hay actividades todavía";
-  }
-  if (titulos.length === 1) {
-    return "Hay 1 actividad";
-  }
-  return `Hay ${titulos.length} actividades`;
-}
-
-const conDatos = ["Revisar contraste", "Practicar TypeScript"];
-const vacia: string[] = [];
-
-console.log(obtenerPrimerTitulo(conDatos));
-console.log(obtenerPrimerTitulo(vacia));
-console.log(describirCantidad(conDatos));
-console.log(describirCantidad(vacia));
-console.log(describirCantidad(["Sola"]));
+console.log(
+  resumirEstados(["pendiente", "completada", "pendiente", "en progreso"]),
+);
+console.log(resumirEstados([]));
