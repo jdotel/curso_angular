@@ -1,23 +1,15 @@
 //Contar y clasificar en una pasada
-function resumirEstados(estados: string[]): string {
-  let pendientes = 0;
-  let completadas = 0;
-  let otras = 0;
+//Los tres, sobre la lista del panel
+const titulos = ["Revisar HTML", "Practicar TypeScript", "Comprobar foco"];
 
-  for (const estado of estados) {
-    if (estado === "pendiente") {
-      pendientes = pendientes + 1;
-    } else if (estado === "completada") {
-      completadas = completadas + 1;
-    } else {
-      otras = otras + 1;
-    }
-  }
+const encontrado = titulos.find((titulo) => titulo.includes("TypeScript"));
+const largos = titulos.filter((titulo) => titulo.length > 12);
+const etiquetas = titulos.map((titulo) => `Actividad: ${titulo}`);
 
-  return `${pendientes} pendientes · ${completadas} completadas · ${otras} otras`;
-}
+console.log(encontrado ?? "No encontrado");
+console.log(largos.length);
+console.log(etiquetas);
+console.log(titulos.length);
 
-console.log(
-  resumirEstados(["pendiente", "completada", "pendiente", "en progreso"]),
-);
-console.log(resumirEstados([]));
+const sinCoincidencias = titulos.filter((titulo) => titulo.includes("Angular"));
+console.log(sinCoincidencias.length);
