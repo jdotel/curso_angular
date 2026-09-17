@@ -1,0 +1,28 @@
+# Dependencias de Node (Crítico ignorar por su gran tamaño)
+node_modules/
+
+# Archivos de compilación y empaquetado de Angular
+/dist/
+#/tmp/
+#/out-tsc/
+#/bazel-out/
+
+# Logs de errores
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+*debug.log*
+
+# Archivos de entorno y configuraciones secretas
+.env
+.env.*
+!.env.example
+
+# Archivos ocultos del sistema operativo y editores de código
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+#documentos
+*.docx  
