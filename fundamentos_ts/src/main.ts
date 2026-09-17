@@ -1,14 +1,16 @@
-//Representar objetos y actualizarlos mediante copias con spread
-//Todos juntos
-const actividad = {
-  id: 1,
-  titulo: "Practicar TypeScript",
-  estado: "pendiente",
-};
+//Comparar inferencia y anotaciones explícitas
 
-const actualizada = { ...actividad, estado: "completada" };
+const titulo = 'Practicar TypeScript';
+const prioridades: string[] = [];
 
-console.log(actividad.estado);
-console.log(actualizada.estado);
-console.log(actividad === actualizada);
-console.log(actividad.titulo === actualizada.titulo);
+function crearEtiqueta(texto: string, cantidad: number): string {
+  return `${texto}: ${cantidad}`;
+}
+
+prioridades.push('alta');
+prioridades.push('media');
+prioridades.push('baja');
+
+console.log(titulo);
+console.log(crearEtiqueta('Pendientes', prioridades.length));
+console.log(prioridades);
