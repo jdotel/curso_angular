@@ -26,3 +26,10 @@ Thumbs.db
 
 #documentos
 *.docx  
+
+#Archivos de documentacion
+# Carpetas locales del curso
+/docs/
+/notas_m00/
+/panel-actividades/
+/pruebas_m00/
