@@ -1,11 +1,21 @@
-import type { Actividad } from "./tipos.js";
+/**
+ * @typedef {import("./tipos.js").Actividad} Actividad
+ */
 
-function aTexto(actividad: Actividad): string {
+/**
+ * @param {Actividad} actividad
+ * @returns {string}
+ */
+function aTexto(actividad) {
   return JSON.stringify(actividad);
 }
 
-function desdeTexto(texto: string): Actividad | undefined {
-  const valor: unknown = JSON.parse(texto);
+/**
+ * @param {string} texto
+ * @returns {Actividad | undefined}
+ */
+function desdeTexto(texto) {
+  const valor = JSON.parse(texto);
 
   if (typeof valor !== "object" || valor === null) {
     return undefined;
@@ -13,14 +23,18 @@ function desdeTexto(texto: string): Actividad | undefined {
   if (!("id" in valor) || !("titulo" in valor) || !("estado" in valor)) {
     return undefined;
   }
-  if (typeof valor.id !== "number" || typeof valor.titulo !== "string") {
+  if (
+    typeof valor.id !== "number" ||
+    typeof valor.titulo !== "string" ||
+    typeof valor.estado !== "string"
+  ) {
     return undefined;
   }
 
-  return valor as Actividad;
+  return valor;
 }
 
-const original: Actividad = {
+const original = {
   id: 1,
   titulo: "Practicar TypeScript",
   estado: "pendiente",
