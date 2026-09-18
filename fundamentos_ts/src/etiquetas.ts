@@ -1,29 +1,44 @@
 import type { Actividad } from "./tipos.js";
 
-function aTexto(actividad: Actividad): string {
+export function aTexto(actividad: Actividad): string {
   return JSON.stringify(actividad);
 }
 
-function desdeTexto(texto: string): Actividad | undefined {
+export function desdeTexto(texto: string): Actividad | undefined {
   const valor: unknown = JSON.parse(texto);
 
   if (typeof valor !== "object" || valor === null) {
     return undefined;
   }
-  if (!("id" in valor) || !("titulo" in valor) || !("estado" in valor)) {
+  if (
+    !("id" in valor) ||
+    !("titulo" in valor) ||
+    !("estado" in valor) ||
+    !("prioridad" in valor)
+  ) {
     return undefined;
   }
-  if (typeof valor.id !== "number" || typeof valor.titulo !== "string") {
+  if (
+    typeof valor.id !== "number" ||
+    typeof valor.titulo !== "string" ||
+    typeof valor.estado !== "string" ||
+    typeof valor.prioridad !== "string"
+  ) {
     return undefined;
   }
 
   return valor as Actividad;
 }
 
+export function crearEtiqueta(actividad: Actividad): string {
+  return JSON.stringify(actividad);
+}
+
 const original: Actividad = {
   id: 1,
   titulo: "Practicar TypeScript",
   estado: "pendiente",
+  prioridad: "alta",
 };
 const texto = aTexto(original);
 
