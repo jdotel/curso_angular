@@ -1,3 +1,4 @@
+//Incremento 2: calcular el resumen
 import type { Actividad, ResumenActividades } from "./tipos.js";
 
 export function crearResumen(actividades: Actividad[]): ResumenActividades {
