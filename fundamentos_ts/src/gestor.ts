@@ -8,8 +8,16 @@ export class GestorActividades {
   }
 
   completar(id: number): Actividad[] {
-    return this.actividades.map((actividad) =>
-      actividad.id === id ? { ...actividad, estado: "completada" } : actividad,
-    );
+    //return this.actividades.map((actividad) =>
+     // actividad.id === id ? { ...actividad, estado: "completada" } : actividad,
+    //);
+    return this.actividades.map((actividad) => {
+      if (actividad.id === id) {
+        actividad.estado = "completada";
+      }
+      return actividad;
+    });
   }
+
+      
 }
