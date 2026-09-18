@@ -1,16 +1,26 @@
-//devuelve un arreglo nuevo
+//Incremento 5: el recorrido completo
 import { actividades } from "./datos.js";
 import { GestorActividades } from "./gestor.js";
 import { crearResumen, presentarResumen } from "./resumen.js";
-import { leerActividadesJson } from "./validacion.js"; //Incremento 4: la frontera para validar el JSON
+import { leerActividadesJson } from "./validacion.js";
 
-const gestor = new GestorActividades(actividades);
-const actualizadas = gestor.completar(3);
-console.log(presentarResumen(crearResumen(actualizadas)));
-console.log("---");
-console.log(presentarResumen(crearResumen(actividades)));
-//Incremento 4: la frontera para validar el JSON
-const texto = JSON.stringify(actividades);
-const actividadesLeidas = leerActividadesJson(texto);
+async function cargarActividades(): Promise<string> {
+  return Promise.resolve(JSON.stringify(actividades));
+}
 
-console.log(presentarResumen(crearResumen(gestor.completar(3))));
+async function iniciar(): Promise<void> {
+  try {
+    const texto = await cargarActividades();
+    const actividadesLeidas = leerActividadesJson(texto);
+    const gestor = new GestorActividades(actividadesLeidas);
+    const actualizadas = gestor.completar(3);
+
+    console.log(presentarResumen(crearResumen(actualizadas)));
+  } catch (error: unknown) {
+    const mensaje =
+      error instanceof Error ? error.message : "Error desconocido";
+    console.error(`No fue posible crear el resumen: ${mensaje}`);
+  }
+}
+
+void iniciar();
