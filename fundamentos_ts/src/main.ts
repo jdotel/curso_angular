@@ -1,12 +1,26 @@
-//Conectar módulos mediante exportaciones e importaciones
-import type { Actividad } from "./tipos.js";
-import { crearEtiqueta } from "./etiquetas.js";
+//Incremento 5: el recorrido completo
+import { actividades } from "./datos.js";
+import { GestorActividades } from "./gestor.js";
+import { crearResumen, presentarResumen } from "./resumen.js";
+import { leerActividadesJson } from "./validacion.js";
 
-const actividades: Actividad[] = [
-  { id: 1, titulo: "Revisar HTML", estado: "completada" },
-  { id: 2, titulo: "Practicar TypeScript", estado: "pendiente" },
-];
-
-for (const actividad of actividades) {
-  console.log(crearEtiqueta(actividad));
+async function cargarActividades(): Promise<string> {
+  return Promise.resolve(JSON.stringify(actividades));
 }
+
+async function iniciar(): Promise<void> {
+  try {
+    const texto = await cargarActividades();
+    const actividadesLeidas = leerActividadesJson(texto);
+    const gestor = new GestorActividades(actividadesLeidas);
+    const actualizadas = gestor.completar(3);
+
+    console.log(presentarResumen(crearResumen(actualizadas)));
+  } catch (error: unknown) {
+    const mensaje =
+      error instanceof Error ? error.message : "Error desconocido";
+    console.error(`No fue posible crear el resumen: ${mensaje}`);
+  }
+}
+
+void iniciar();
