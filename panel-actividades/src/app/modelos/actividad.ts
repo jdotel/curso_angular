@@ -1,9 +1,11 @@
-export type Prioridad = 'baja' | 'media' | 'alta'; // nuevo
+export type EstadoActividad = 'pendiente' | 'en_progreso' | 'completada';
+
+export type Prioridad = 'baja' | 'media' | 'alta';
 
 export interface Actividad {
-  readonly id: number;
+  id: number;
   titulo: string;
   estado: EstadoActividad;
-  prioridad: Prioridad; // nuevo
-  creadaEn: string; // nuevo, en formato 2026-08-10
+  prioridad: Prioridad;
+  creadaEn: string;
 }

@@ -6,11 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './resumen-actividades.css',
 })
 export class ResumenActividades {
-  protected readonly total: number = 4;
-  protected readonly pendientes: number = 2;
-  protected readonly completadas: number = 2;
-
-  protected get resumen(): string {
-    return `${this.completadas} de ${this.total} completadas`;
-  }
+  protected readonly total = 4;
+  protected readonly pendientes = 2;
+  protected readonly enProgreso = 1;
+  protected readonly completadas = 1;
 }

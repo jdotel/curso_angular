@@ -1,16 +1,17 @@
 <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
 
 <header class="cabecera">
-  <h1>Panel de actividades</h1>
+  <div class="contenedor">
+    <p class="marca">Panel de actividades</p>
+  </div>
 </header>
 
-<main id="contenido" class="contenido">
-  <app-resumen-actividades />
-  <app-lista-actividades />
-</main>
+<main id="contenido" class="contenedor">
+  <h1>Panel de actividades</h1>
 
-<footer class="pie">
-  <p>Panel de actividades · Curso de Angular</p>
-</footer>
+  <app-resumen-actividades />
+  <app-tarjeta-actividad />
+
+</main>
 
 <router-outlet />
