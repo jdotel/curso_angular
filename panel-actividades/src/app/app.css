@@ -1,0 +1,7 @@
+.contenido {
+  width: min(100% - 2rem, 70rem);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

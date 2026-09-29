@@ -1,0 +1,23 @@
+<h2>Actividades</h2>
+
+<ul class="actividades">
+  @for (actividad of actividades; track actividad.id; let posicion = $index) {
+    <li class="actividad" [class.completada]="actividad.estado === 'completada'">
+      <p class="posicion">{{ posicion + 1 }}</p>
+      <h3>{{ actividad.titulo }}</h3>
+
+      @switch (actividad.estado) {
+        @case ('pendiente') { <span class="etiqueta">Pendiente</span> }
+        @case ('en_progreso') { <span class="etiqueta">En progreso</span> }
+        @case ('completada') { <span class="etiqueta">Completada</span> }
+        @default { <span class="etiqueta">Sin estado</span> }
+      }
+    </li>
+  } @empty {
+    <li class="vacio">
+      Todavía no hay actividades. <a href="#nueva">Crear la primera</a>
+    </li>
+  }
+</ul>
+
+<button type="button" (click)="vaciar()">Vaciar la lista</button>

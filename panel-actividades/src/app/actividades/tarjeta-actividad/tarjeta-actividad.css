@@ -1,0 +1,23 @@
+.tarjeta {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+  border-inline-start: 4px solid transparent;
+}
+
+.tarjeta.urgente {
+  border-inline-start-color: #b91c1c;
+}
+
+.barra {
+  background: #e2e8f0;
+  border-radius: 999px;
+  block-size: 0.5rem;
+  overflow: hidden;
+}
+
+.barra-relleno {
+  display: block;
+  block-size: 100%;
+  background: #1d4ed8;
+}

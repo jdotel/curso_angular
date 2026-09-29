@@ -1,1 +1,36 @@
-<p>tarjeta-actividad works!</p>
+<article class="tarjeta" [class.completada]="completada">
+  <h3>{{ titulo }}</h3>
+
+  @switch (estado) {
+    @case ('pendiente') {
+      <span class="etiqueta etiqueta-pendiente">Pendiente</span>
+    }
+    @case ('en_progreso') {
+      <span class="etiqueta etiqueta-progreso">En progreso</span>
+    }
+    @case ('completada') {
+      <span class="etiqueta etiqueta-completada">Completada</span>
+    }
+    @default {
+      <span class="etiqueta">Sin estado</span>
+    }
+  }
+
+  <button
+    type="button"
+    (click)="alternarDetalles()"
+    [attr.aria-expanded]="detallesVisibles"
+  >
+    {{ detallesVisibles ? 'Ocultar detalles' : 'Mostrar detalles' }}
+  </button>
+
+  @if (detallesVisibles) {
+    <p class="detalle">{{ descripcion }}</p>
+  }
+
+  @if (completada) {
+    <p class="aviso-completada">Esta actividad ya está completada.</p>
+  } @else {
+    <button type="button" (click)="avanzarEstado()">Avanzar estado</button>
+  }
+</article>

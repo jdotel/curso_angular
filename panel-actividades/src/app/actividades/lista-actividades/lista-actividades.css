@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.actividades {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
