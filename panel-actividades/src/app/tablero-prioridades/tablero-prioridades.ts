@@ -3,13 +3,18 @@ import { Component, computed, signal } from '@angular/core';
 //import { Actividad, EstadoActividad } from '../modelos/actividad';
 import { Actividad, EstadoActividad, FiltroEstado, FiltroPrioridad, Prioridad } from '../modelos/actividad';
 
-
+//'./tablero-prioridades.html',
 @Component({
   selector: 'app-tablero-prioridades',
   templateUrl: './tablero-prioridades.html',
   styleUrl: './tablero-prioridades.css',
 })
 export class TableroPrioridades {
+  protected readonly termino = signal('');
+  protected readonly filtroEstado = signal<FiltroEstado>('todas');
+  protected readonly filtroPrioridad = signal<FiltroPrioridad>('todas');
+  protected readonly seleccionadaId = signal<number | null>(null);
+
   protected readonly actividades = signal<Actividad[]>([
     {
       id: 1,
@@ -94,9 +99,6 @@ export class TableroPrioridades {
   );
 
   private readonly orden: Record<Prioridad, number> = { alta: 0, media: 1, baja: 2 };
-  protected readonly termino = signal('');
-  protected readonly filtroEstado = signal<FiltroEstado>('todas');
-  protected readonly filtroPrioridad = signal<FiltroPrioridad>('todas');
 
   protected readonly visibles = computed(() => {
     const termino = this.termino().trim().toLocaleLowerCase('es');

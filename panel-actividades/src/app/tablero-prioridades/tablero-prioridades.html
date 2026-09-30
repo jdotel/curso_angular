@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<article *ngFor="let actividad of actividades(); trackBy: trackActividad" class="tarjeta" [class.destacada]="actividad.destacada">
+@for (actividad of actividades(); track actividad.id) {
+<article class="tarjeta" [class.destacada]="actividad.destacada">
   <h4>{{ actividad.titulo }}</h4>
   <p class="prioridad prioridad-{{ actividad.prioridad }}">
     Prioridad {{ actividad.prioridad }}
@@ -25,6 +26,8 @@
                 Eliminar
               </button>
             </div>
+          </article>
+}
 
 <section class="tablero" aria-labelledby="titulo-tablero">
   <h2 id="titulo-tablero">Tablero de prioridades</h2>
