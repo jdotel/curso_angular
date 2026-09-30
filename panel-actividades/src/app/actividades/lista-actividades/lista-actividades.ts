@@ -12,8 +12,11 @@ export class ListaActividades {
   readonly actividades = input.required<Actividad[]>();
   readonly seleccionadaId = input<number | null>(null);
   readonly mensajeVacio = input('No hay nada que mostrar.');
+  readonly hayFiltros = input(false);
 
+  readonly seleccionCambiada = output<number>();
+  readonly destacadoCambiado = output<number>();
   readonly avanceSolicitado = output<number>();
   readonly eliminacionSolicitada = output<number>();
-  readonly seleccionCambiada = output<number>();
+  readonly limpiezaSolicitada = output<void>();
 }

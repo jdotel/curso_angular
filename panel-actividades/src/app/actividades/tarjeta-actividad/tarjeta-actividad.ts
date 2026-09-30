@@ -10,13 +10,12 @@ export class TarjetaActividad {
   readonly actividad = input.required<Actividad>();
   readonly seleccionada = input(false);
 
+  readonly seleccionCambiada = output<number>();
+  readonly destacadoCambiado = output<number>();
   readonly avanceSolicitado = output<number>();
   readonly eliminacionSolicitada = output<number>();
-  readonly seleccionCambiada = output<number>();
 
   protected readonly etiquetaEstado = computed(() => ETIQUETAS[this.actividad().estado]);
 
   protected readonly etiquetaEliminar = computed(() => `Eliminar ${this.actividad().titulo}`);
-
-  protected readonly etiquetaAvanzar = computed(() => `Completar ${this.actividad().titulo}`);
 }

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './actividad.html',
 })
 export class Actividad {}
-export class ETIQUETAS {}
+
+export const ETIQUETAS: Record<EstadoActividad, string> = {
+  pendiente: 'Pendiente',
+  en_progreso: 'En progreso',
+  completada: 'Completada',
+};

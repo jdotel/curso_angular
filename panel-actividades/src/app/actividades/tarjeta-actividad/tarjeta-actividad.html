@@ -1,32 +1,37 @@
-<article class="tarjeta" [class.tarjeta--seleccionada]="seleccionada()">
-  <h3 class="tarjeta__encabezado">
-    <button
-      type="button"
-      class="tarjeta__titulo"
-      [attr.aria-pressed]="seleccionada()"
-      (click)="seleccionCambiada.emit(actividad().id)">
-      {{ actividad().titulo }}
-    </button>
-  </h3>
-
-  <p class="tarjeta__estado">
-    <span class="tarjeta__punto" aria-hidden="true"></span>
-    {{ etiquetaEstado() }}
+<article
+  class="tarjeta"
+  [class.destacada]="actividad().destacada"
+  [class.seleccionada]="seleccionada()"
+>
+  <h4>{{ actividad().titulo }}</h4>
+  <p class="prioridad prioridad-{{ actividad().prioridad }}">
+    Prioridad {{ actividad().prioridad }}
   </p>
+  <p class="estado">{{ etiquetaEstado() }}</p>
 
-  <div class="tarjeta__acciones">
+  <div class="acciones">
     <button
       type="button"
-      [attr.aria-label]="etiquetaAvanzar()"
-      [disabled]="actividad().estado === 'completada'"
-      (click)="avanceSolicitado.emit(actividad().id)">
-      Completar
+      [attr.aria-pressed]="seleccionada()"
+      (click)="seleccionCambiada.emit(actividad().id)"
+    >
+      {{ seleccionada() ? 'Quitar selección' : 'Seleccionar' }}
     </button>
-
+    <button type="button" (click)="destacadoCambiado.emit(actividad().id)">
+      {{ actividad().destacada ? 'Quitar destacado' : 'Destacar' }}
+    </button>
+    <button
+      type="button"
+      [disabled]="actividad().estado === 'completada'"
+      (click)="avanceSolicitado.emit(actividad().id)"
+    >
+      Avanzar estado
+    </button>
     <button
       type="button"
       [attr.aria-label]="etiquetaEliminar()"
-      (click)="eliminacionSolicitada.emit(actividad().id)">
+      (click)="eliminacionSolicitada.emit(actividad().id)"
+    >
       Eliminar
     </button>
   </div>

@@ -1,4 +1,4 @@
-import { Component, model } from '@angular/core';
+import { Component, computed, model } from '@angular/core';
 import { FiltroEstado, FiltroPrioridad } from '../../modelos/actividad';
 
 @Component({
@@ -10,6 +10,10 @@ export class FiltrosActividades {
   readonly termino = model('');
   readonly estado = model<FiltroEstado>('todas');
   readonly prioridad = model<FiltroPrioridad>('todas');
+
+  protected readonly hayFiltros = computed(
+    () => this.termino().trim() !== '' || this.estado() !== 'todas' || this.prioridad() !== 'todas',
+  );
 
   protected escribirTermino(evento: Event): void {
     this.termino.set((evento.target as HTMLInputElement).value);
