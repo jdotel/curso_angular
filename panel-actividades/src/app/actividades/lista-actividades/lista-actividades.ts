@@ -16,6 +16,7 @@ export class ListaActividades {
       estado: 'completada',
       prioridad: 'alta',
       creadaEn: '2026-08-10',
+      destacada: false,
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ export class ListaActividades {
       estado: 'en_progreso',
       prioridad: 'media',
       creadaEn: '2026-08-12',
+      destacada: false,
     },
     {
       id: 3,
@@ -30,6 +32,7 @@ export class ListaActividades {
       estado: 'pendiente',
       prioridad: 'alta',
       creadaEn: '2026-08-14',
+      destacada: false,
     },
   ];
 }

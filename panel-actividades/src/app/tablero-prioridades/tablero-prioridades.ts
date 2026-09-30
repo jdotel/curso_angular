@@ -1,5 +1,8 @@
-import { Component, computed, effect, signal } from '@angular/core';
-import { Actividad, ACTIVIDADES } from '../modelos/actividad';
+//import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+//import { Actividad, EstadoActividad } from '../modelos/actividad';
+import { Actividad, EstadoActividad, FiltroEstado, FiltroPrioridad, Prioridad } from '../modelos/actividad';
+
 
 @Component({
   selector: 'app-tablero-prioridades',
@@ -7,27 +10,118 @@ import { Actividad, ACTIVIDADES } from '../modelos/actividad';
   styleUrl: './tablero-prioridades.css',
 })
 export class TableroPrioridades {
-  protected readonly actividades = signal<Actividad[]>([...ACTIVIDADES]);
+  protected readonly actividades = signal<Actividad[]>([
+    {
+      id: 1,
+      titulo: 'Preparar estructura HTML',
+      estado: 'completada',
+      prioridad: 'alta',
+      creadaEn: '2026-08-10',
+      destacada: false,
+    },
+    {
+      id: 2,
+      titulo: 'Revisar contraste',
+      estado: 'en_progreso',
+      prioridad: 'media',
+      creadaEn: '2026-08-12',
+      destacada: true,
+    },
+    {
+      id: 3,
+      titulo: 'Practicar TypeScript',
+      estado: 'pendiente',
+      prioridad: 'alta',
+      creadaEn: '2026-08-14',
+      destacada: false,
+    },
+    {
+      id: 4,
+      titulo: 'Comprobar vista estrecha',
+      estado: 'pendiente',
+      prioridad: 'baja',
+      creadaEn: '2026-08-16',
+      destacada: false,
+    },
+    {
+      id: 5,
+      titulo: 'Ejecutar el build',
+      estado: 'pendiente',
+      prioridad: 'media',
+      creadaEn: '2026-08-18',
+      destacada: false,
+    },
+  ]);
+  //protected readonly actividadesDestacadas = computed(() =>
+  protected alternarDestacada(id: number): void {
+    this.actividades.update((actuales) =>
+      actuales.map((a) => (a.id === id ? { ...a, destacada: !a.destacada } : a)),
+    );
+  }
+
+  protected avanzarEstado(id: number): void {
+    this.actividades.update((actuales) =>
+      actuales.map((a) => (a.id === id ? { ...a, estado: this.siguienteEstado(a.estado) } : a)),
+    );
+  }
+
+  protected eliminar(id: number): void {
+    this.actividades.update((actuales) => actuales.filter((a) => a.id !== id));
+  }
+
+  private siguienteEstado(estado: EstadoActividad): EstadoActividad {
+    if (estado === 'pendiente') return 'en_progreso';
+    if (estado === 'en_progreso') return 'completada';
+    return 'completada';
+  }
+
+  protected readonly total = computed(() => this.actividades().length);
+
+  protected readonly pendientes = computed(
+    () => this.actividades().filter((a) => a.estado === 'pendiente').length,
+  );
+
+  protected readonly enProgreso = computed(
+    () => this.actividades().filter((a) => a.estado === 'en_progreso').length,
+  );
+
+  protected readonly completadas = computed(
+    () => this.actividades().filter((a) => a.estado === 'completada').length,
+  );
+
+  protected readonly porcentaje = computed(() =>
+    this.total() === 0 ? 0 : Math.round((this.completadas() / this.total()) * 100),
+  );
+
+  private readonly orden: Record<Prioridad, number> = { alta: 0, media: 1, baja: 2 };
   protected readonly termino = signal('');
+  protected readonly filtroEstado = signal<FiltroEstado>('todas');
+  protected readonly filtroPrioridad = signal<FiltroPrioridad>('todas');
 
   protected readonly visibles = computed(() => {
     const termino = this.termino().trim().toLocaleLowerCase('es');
-    return this.actividades().filter(
-      (a) => termino === '' || a.titulo.toLocaleLowerCase('es').includes(termino),
-    );
+    const estado = this.filtroEstado();
+    const prioridad = this.filtroPrioridad();
+
+    return this.actividades()
+      .filter((a) => termino === '' || a.titulo.toLocaleLowerCase('es').includes(termino))
+      .filter((a) => estado === 'todas' || a.estado === estado)
+      .filter((a) => prioridad === 'todas' || a.prioridad === prioridad)
+      .sort((primera, segunda) => this.orden[primera.prioridad] - this.orden[segunda.prioridad]);
   });
 
   protected readonly mostradas = computed(() => this.visibles().length);
 
-  constructor() {
-    effect(() => {
-      document.title = `Panel (${this.mostradas()} actividades)`;
-    });
-  }
+  protected readonly hayFiltros = computed(
+    () =>
+      this.termino().trim() !== '' ||
+      this.filtroEstado() !== 'todas' ||
+      this.filtroPrioridad() !== 'todas',
+  );
 
-  protected completar(id: number): void {
-    this.actividades.update((actuales) =>
-      actuales.map((a) => (a.id === id ? { ...a, estado: 'completada' } : a)),
-    );
-  }
+  protected readonly mensajeVacio = computed(() =>
+    this.total() === 0
+      ? 'Todavía no hay actividades. Crea la primera para empezar.'
+      : 'Ninguna actividad coincide con los filtros aplicados.',
+  );
 }
