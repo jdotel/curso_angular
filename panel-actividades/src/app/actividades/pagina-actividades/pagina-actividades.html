@@ -1,1 +1,16 @@
-<p>pagina-actividades works!</p>
+<app-panel-seccion titulo="Filtros">
+  <app-filtros-actividades [(termino)]="termino" [(estado)]="estado" />
+</app-panel-seccion>
+
+<app-panel-seccion
+  titulo="Actividades"
+  [descripcion]="mensajeResumen()">
+
+  <button acciones type="button" (click)="crearActividad()">Nueva actividad</button>
+
+  <app-lista-actividades
+    [actividades]="visibles()"
+    [mensajeVacio]="mensajeVacio()"
+    (avanceSolicitado)="avanzarEstado($event)"
+    (eliminacionSolicitada)="eliminar($event)" />
+</app-panel-seccion>

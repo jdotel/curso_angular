@@ -1,52 +1,33 @@
-<section
-  class="actividad-destacada"
-  [class.prioridad-alta]="prioridad === 'alta'"
-  aria-labelledby="destacada-titulo"
->
-  <div class="encabezado-actividad">
-    <h2 id="destacada-titulo">{{ titulo }}</h2>
-
-    @switch (estado) {
-      @case ('pendiente') { <span class="estado estado-pendiente">Pendiente</span> }
-      @case ('en_progreso') { <span class="estado estado-progreso">En progreso</span> }
-      @case ('completada') { <span class="estado estado-completada">Completada</span> }
-    }
-  </div>
-
-  <div
-    class="barra-progreso"
-    role="progressbar"
-    aria-label="Progreso de la actividad destacada"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    [attr.aria-valuenow]="porcentaje"
-  >
-    <span [style.width.%]="porcentaje"></span>
-  </div>
-  <p class="porcentaje">{{ porcentaje }}% completado</p>
-
-  @if (detallesVisibles) {
-    <p id="detalle-actividad">{{ descripcion }}</p>
-  } @else {
-    <p id="detalle-actividad">Los detalles están ocultos.</p>
-  }
-
-  <div class="acciones">
+<article class="tarjeta" [class.tarjeta--seleccionada]="seleccionada()">
+  <h3 class="tarjeta__encabezado">
     <button
       type="button"
-      [attr.aria-expanded]="detallesVisibles"
-      aria-controls="detalle-actividad"
-      (click)="alternarDetalles()"
-    >
-      {{ detallesVisibles ? 'Ocultar detalles' : 'Mostrar detalles' }}
+      class="tarjeta__titulo"
+      [attr.aria-pressed]="seleccionada()"
+      (click)="seleccionCambiada.emit(actividad().id)">
+      {{ actividad().titulo }}
     </button>
+  </h3>
+
+  <p class="tarjeta__estado">
+    <span class="tarjeta__punto" aria-hidden="true"></span>
+    {{ etiquetaEstado() }}
+  </p>
+
+  <div class="tarjeta__acciones">
     <button
       type="button"
-      class="accion-principal"
-      [disabled]="estado === 'completada'"
-      (click)="avanzarEstado()"
-    >
-      Avanzar estado
+      [attr.aria-label]="etiquetaAvanzar()"
+      [disabled]="actividad().estado === 'completada'"
+      (click)="avanceSolicitado.emit(actividad().id)">
+      Completar
+    </button>
+
+    <button
+      type="button"
+      [attr.aria-label]="etiquetaEliminar()"
+      (click)="eliminacionSolicitada.emit(actividad().id)">
+      Eliminar
     </button>
   </div>
-</section>
+</article>

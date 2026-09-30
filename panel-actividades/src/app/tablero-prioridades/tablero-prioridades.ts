@@ -1,15 +1,24 @@
-//import { Component, signal } from '@angular/core';
-import { Component, computed, signal } from '@angular/core';
-//import { Actividad, EstadoActividad } from '../modelos/actividad';
+import { Component, computed, input, signal } from '@angular/core';
 import { Actividad, EstadoActividad, FiltroEstado, FiltroPrioridad, Prioridad } from '../modelos/actividad';
 
-//'./tablero-prioridades.html',
+const ETIQUETAS: Record<EstadoActividad, string> = {
+  pendiente: 'Pendiente',
+  en_progreso: 'En progreso',
+  completada: 'Completada',
+};
+
 @Component({
   selector: 'app-tablero-prioridades',
   templateUrl: './tablero-prioridades.html',
   styleUrl: './tablero-prioridades.css',
 })
 export class TableroPrioridades {
+  readonly actividad = input.required<Actividad>();
+  readonly seleccionada = input(false);
+
+  protected readonly etiquetaEstado = computed(() => ETIQUETAS[this.actividad().estado]);
+
+
   protected readonly termino = signal('');
   protected readonly filtroEstado = signal<FiltroEstado>('todas');
   protected readonly filtroPrioridad = signal<FiltroPrioridad>('todas');

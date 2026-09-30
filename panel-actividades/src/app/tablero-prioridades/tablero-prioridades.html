@@ -71,12 +71,12 @@
     <div class="controles">
       <div class="campo">
         <label for="busqueda">Buscar por título</label>
-        <input id="busqueda" type="search" [value]="termino()" (input)="buscar($event)">
+        <input id="busqueda" type="search" [value]="termino()" (input)="termino.set($any($event.target).value)">
       </div>
 
       <div class="campo">
         <label for="filtro-estado">Estado</label>
-        <select id="filtro-estado" [value]="filtroEstado()" (change)="cambiarFiltroEstado($event)">
+        <select id="filtro-estado" [value]="filtroEstado()" (change)="filtroEstado.set($any($event.target).value)">
           <option value="todas">Todos</option>
           <option value="pendiente">Pendientes</option>
           <option value="en_progreso">En progreso</option>
@@ -86,7 +86,7 @@
 
       <div class="campo">
         <label for="filtro-prioridad">Prioridad</label>
-        <select id="filtro-prioridad" [value]="filtroPrioridad()" (change)="cambiarFiltroPrioridad($event)">
+        <select id="filtro-prioridad" [value]="filtroPrioridad()" (change)="filtroPrioridad.set($any($event.target).value)">
           <option value="todas">Todas</option>
           <option value="alta">Alta</option>
           <option value="media">Media</option>
@@ -94,7 +94,7 @@
         </select>
       </div>
 
-      <button type="button" [disabled]="!hayFiltros()" (click)="limpiarFiltros()">
+      <button type="button" [disabled]="!hayFiltros()" (click)="termino.set(''); filtroEstado.set('todas'); filtroPrioridad.set('todas')">
         Limpiar filtros
       </button>
     </div>

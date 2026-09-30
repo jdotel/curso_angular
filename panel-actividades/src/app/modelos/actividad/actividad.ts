@@ -7,3 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './actividad.html',
 })
 export class Actividad {}
+export class ETIQUETAS {}
