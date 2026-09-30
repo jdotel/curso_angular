@@ -1,3 +1,17 @@
-<h2>{{ titulo() }}</h2>
-<p>Has pulsado {{ contador() }} veces.</p>
-<button type="button" (click)="sumar()">Sumar</button>
+<label for="buscar">Buscar actividad</label>
+<input id="buscar" type="search" [value]="termino()" (input)="buscar($event)">
+
+<p aria-live="polite">Mostrando {{ mostradas() }} de {{ total() }} actividades</p>
+
+<ul>
+  @for (actividad of visibles(); track actividad.id) {
+    <li><strong>{{ actividad.prioridad }}</strong> · {{ actividad.titulo }}</li>
+  } @empty {
+    <li class="vacio">
+      <p>{{ mensajeVacio() }}</p>
+      @if (hayFiltros()) {
+        <button type="button" (click)="limpiarFiltros()">Quitar los filtros</button>
+      }
+    </li>
+  }
+</ul>
