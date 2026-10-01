@@ -1,0 +1,16 @@
+<h3>{{ titulo }}</h3>
+
+<div
+  role="progressbar"
+  aria-label="Progreso de la actividad"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  [attr.aria-valuenow]="porcentaje"
+  class="barra"
+>
+  <span class="barra-relleno" [style.width.%]="porcentaje"></span>
+</div>
+
+<p>Progreso: {{ porcentaje }} %</p>
+
+<button type="button" [disabled]="completada">Avanzar estado</button>
