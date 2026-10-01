@@ -10,8 +10,12 @@
   <h1>Panel de actividades</h1>
 
   <app-resumen-actividades />
-  <app-tablero-prioridades [actividad]="actividad" />
   <app-lista-actividades />
+  <app-pagina-actividades
+   [actividades]="actividades()"
+  (actividadesCambiadas)="actividades.set($event)" />
+  <app-pagina-estadisticas [actividades]="actividades()" />
+  <app-papelera [actividades]="actividades()" (actividadesCambiadas)="actividades.set($event)" />
 
 </main>
 
