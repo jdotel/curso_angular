@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './actividad.css',
   templateUrl: './actividad.html',
 })
-export class Actividad {}
+export class Actividad {
+  id!: number;
+}
+
+export type EstadoActividad = 'pendiente' | 'en_progreso' | 'completada';
+export type Prioridad = 'baja' | 'media' | 'alta';
 
 export const ETIQUETAS: Record<EstadoActividad, string> = {
   pendiente: 'Pendiente',
