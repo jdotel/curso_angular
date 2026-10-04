@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActividadesService } from '../../actividades/actividades';
 
 @Component({
   imports: [],
@@ -6,4 +7,19 @@ import { Component } from '@angular/core';
   styleUrl: './pagina-estadisticas.css',
   templateUrl: './pagina-estadisticas.html',
 })
-export class PaginaEstadisticas {}
+//export class PaginaEstadisticas {}
+export class PaginaEstadisticas {
+  /*
+  private readonly servicio = inject(ActividadesService);
+
+  protected readonly total = this.servicio.total;
+  protected readonly pendientes = this.servicio.totalPendientes;
+  protected readonly porcentaje = computed(() =>
+    this.total() === 0 ? 0 : Math.round(((this.total() - this.pendientes()) / this.total()) * 100),
+  );*/
+
+  private readonly servicio = inject(ActividadesService);
+
+  protected readonly total = this.servicio.total;
+
+}

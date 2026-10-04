@@ -19,3 +19,4 @@ describe('PaginaEstadisticas', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Panel } from './panel';
+import { TableroPrioridades } from './tablero-prioridades';
 
-describe('Panel', () => {
-  let component: Panel;
-  let fixture: ComponentFixture<Panel>;
+describe('TableroPrioridades', () => {
+  let component: TableroPrioridades;
+  let fixture: ComponentFixture<TableroPrioridades>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Panel],
+      imports: [TableroPrioridades],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Panel);
+    fixture = TestBed.createComponent(TableroPrioridades);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

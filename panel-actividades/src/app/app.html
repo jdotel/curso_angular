@@ -8,14 +8,11 @@
 
 <main id="contenido" class="contenedor">
   <h1>Panel de actividades</h1>
-
   <app-resumen-actividades />
   <app-lista-actividades />
-  <app-pagina-actividades
-   [actividades]="actividades()"
-  (actividadesCambiadas)="actividades.set($event)" />
-  <app-pagina-estadisticas [actividades]="actividades()" />
-  <app-papelera [actividades]="actividades()" (actividadesCambiadas)="actividades.set($event)" />
+  <app-pagina-actividades />
+  <app-pagina-estadisticas />
+
 
 </main>
 
