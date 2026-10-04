@@ -1,22 +1,44 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
 .panel {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #dbe3ec;
+  border-radius: 0.75rem;
+  background: #fff;
 }
 
 .panel__cabecera {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: baseline;
+  gap: 0.5rem 1rem;
+  align-items: center;
   justify-content: space-between;
 }
 
 .panel__titulo {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+}
+
+.panel__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .panel__cuerpo {
   min-width: 0;
+}
+
+@media (min-width: 48rem) {
+  .panel {
+    padding: 1.25rem;
+  }
 }
