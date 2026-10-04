@@ -15,10 +15,13 @@
 }
 
 .marca {
+  display: inline-block;
   margin: 0;
   font-size: 1.15rem;
   font-weight: 750;
   letter-spacing: -0.02em;
+  color: inherit;
+  text-decoration: none;
 }
 
 .menu {
