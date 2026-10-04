@@ -1,21 +1,49 @@
 :host {
   display: block;
+  min-width: 0;
 }
 
-.encabezado-seccion {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem 1rem;
-  align-items: baseline;
-  justify-content: space-between;
+.metricas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.metricas li {
+  min-width: 0;
+  padding: 0.85rem 0.65rem;
+  border: 1px solid #dbe3ec;
+  border-radius: 0.7rem;
+  background: #fff;
+  text-align: center;
+}
+
+.metricas strong {
+  display: block;
+  font-size: clamp(1.35rem, 6vw, 1.8rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.metricas span {
+  display: block;
+  margin-top: 0.25rem;
+  color: #596579;
+  font-size: 0.82rem;
 }
 
 @media (min-width: 40rem) {
   .metricas {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
   }
 }
 
-.metricas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 0.75rem; }
-.metricas li { border: 1px solid #d4d4d4; border-radius: 0.5rem; padding: 0.75rem; text-align: center; min-width: 0; }
-.metricas strong { display: block; font-size: 1.75rem; }
+@media (min-width: 64rem) {
+  .metricas {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
