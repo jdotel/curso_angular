@@ -1,65 +1,74 @@
-.contenido {
-  width: min(100% - 2rem, 70rem);
-  margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+:host {
+  display: block;
+  min-height: 100vh;
 }
 
 .contenedor {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 0 1rem;
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
 }
 
 .cabecera {
-  border-bottom: 1px solid #cbd5e1;
-  padding: 1rem 0;
+  padding-block: 1rem;
+  background: #fff;
+  border-bottom: 1px solid #dbe3ec;
 }
 
 .marca {
-  font-weight: 700;
   margin: 0;
+  font-size: 1.15rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
 }
 
-h1 {
-  font-size: 1.9rem;
-  line-height: 1.2;
-  margin: 2rem 0 1rem;
-}
-
-.salto-contenido {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  background: #ffffff;
-  padding: .6rem 1rem;
-  border: 2px solid #1d4ed8;
-  z-index: 10;
-}
-
-.salto-contenido:focus {
-  left: 0;
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 3px solid #b45309;
-  outline-offset: 2px;
-}
 .menu {
-  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 1rem;
+  list-style: none;
 }
 
 .menu a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 0.5rem;
   color: inherit;
+  text-decoration: none;
+}
+
+.menu a:hover,
+.menu a.activo {
+  background: #eaf1ff;
+  color: #1746a2;
 }
 
 .menu a.activo {
   font-weight: 700;
-  text-decoration: underline;
+}
+
+main.contenedor {
+  padding-block: 1.25rem 3rem;
+}
+
+main h1 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  line-height: 1.2;
+}
+
+@media (min-width: 48rem) {
+  .cabecera > .contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  main.contenedor {
+    padding-top: 2rem;
+  }
 }

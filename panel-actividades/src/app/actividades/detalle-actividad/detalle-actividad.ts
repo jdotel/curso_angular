@@ -23,6 +23,7 @@ type Resultado =
 export class DetalleActividad {
   private readonly servicio = inject(ActividadesService);
   private readonly router = inject(Router);
+  private readonly titulo = inject(Title);
 
   readonly id = input.required<string>();
 
@@ -48,7 +49,15 @@ export class DetalleActividad {
 
   constructor() {
     effect(() => {
-      /* … el título … */
+      const resultado = this.resultado();
+
+      if (resultado.estado === 'encontrada') {
+        this.titulo.setTitle(`${resultado.actividad.titulo} · Actividades`);
+      } else if (resultado.estado === 'ausente') {
+        this.titulo.setTitle('Actividad no encontrada · Actividades');
+      } else {
+        this.titulo.setTitle('Actividad no válida · Actividades');
+      }
     });
   }
 

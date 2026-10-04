@@ -1,6 +1,6 @@
 import { computed, inject, Service, signal } from '@angular/core';
 import { AlmacenamientoService } from '../compartido/almacenamiento';
-import { Actividad, EstadoActividad, esColeccionActividades } from '../modelos/actividad';
+import { Actividad, EstadoActividad, Prioridad, esColeccionActividades } from '../modelos/actividad/actividad'; /* '../modelos/actividad'; */
 
 const CLAVE = 'panel.actividades.v1';
 
@@ -93,6 +93,26 @@ export class ActividadesService {
 
   buscarPorId(id: number): Actividad | undefined {
     return this.lista().find((a) => a.id === id);
+  }
+
+  crear(titulo: string, prioridad: Prioridad): Actividad | null {
+    const nombre = titulo.trim();
+    if (nombre.length < 3 || nombre.length > 80) return null;
+    if (this.lista().some((a) => a.titulo.toLocaleLowerCase() === nombre.toLocaleLowerCase())) {
+      return null;
+    }
+
+    const actividad: Actividad = {
+      id: Math.max(0, ...this.lista().map((a) => a.id)) + 1,
+      titulo: nombre,
+      estado: 'pendiente',
+      prioridad,
+      creadaEn: new Date().toISOString().slice(0, 10),
+      destacada: false,
+    };
+
+    this.aplicar((actual) => [...actual, actividad]);
+    return actividad;
   }
 
   alternarDestacada(id: number): void {

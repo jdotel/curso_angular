@@ -1,93 +1,46 @@
-.tarjeta {
-  border: 1px solid #d4d4d4;
-  border-left: 4px solid #d4d4d4;
-  border-radius: 0.5rem;
-  padding: 1rem;
+:host {
+  display: block;
   min-width: 0;
 }
 
-.tarjeta h4 {
-  font-size: 1.1rem;
-  margin: 0 0 0.5rem;
+.pagina {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
 }
 
-.tarjeta h4,
-.tarjeta p {
-  overflow-wrap: anywhere;
+.pagina h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 5vw, 1.65rem);
+  line-height: 1.25;
 }
 
-.tarjeta.destacada {
-  border-left-color: #545454;
-  background: #f6f6f6;
-}
-
-.tarjeta.seleccionada {
-  outline: 2px solid #545454;
-  outline-offset: 2px;
-}
-
-.prioridad {
-  font-size: 0.85rem;
-  margin: 0 0 0.25rem;
-}
-
-.prioridad-alta {
-  font-weight: 700;
-}
-
-.prioridad-media {
-  font-weight: 500;
-}
-
-.prioridad-baja {
-  font-weight: 400;
-}
-
-.acciones {
+.filtros {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-button {
-  padding: 0.4rem 0.75rem;
-  cursor: pointer;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
-}
-
-:focus-visible {
-  outline: 2px solid #545454;
-  outline-offset: 2px;
-}
-
-.lista {
-  list-style: none;
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.75rem;
 }
 
-.lista>li {
-  min-width: 0;
+.filtros a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #fff;
+  text-decoration: none;
 }
 
-.vacio {
-  border: 1px dashed #949494;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  text-align: center;
+.filtros a.activo {
+  border-color: #1746a2;
+  background: #1746a2;
+  color: #fff;
 }
 
-.aviso {
-  margin: 0;
-  border: 1px solid #949494;
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.75rem;
+@media (min-width: 48rem) {
+  .pagina {
+    gap: 1.25rem;
+  }
 }

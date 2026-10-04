@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Prioridad } from '../../modelos/modelos';
+import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { Prioridad } from '../../modelos/actividad/actividad';
+import { ActividadesService } from '../actividades';
 
 @Component({
   imports: [],

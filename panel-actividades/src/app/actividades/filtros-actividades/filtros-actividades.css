@@ -1,33 +1,68 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
 .controles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: end;
+  padding: 1rem;
+  border: 1px solid #dbe3ec;
+  border-radius: 0.75rem;
+  background: #fff;
 }
 
 .campo {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  display: grid;
   min-width: 0;
+  gap: 0.35rem;
+}
+
+.campo label {
+  font-size: 0.9rem;
+  font-weight: 650;
 }
 
 .campo input,
 .campo select {
-  padding: 0.4rem;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #bcc8d8;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: inherit;
 }
 
-button {
-  padding: 0.4rem 0.75rem;
-  cursor: pointer;
+.controles button {
+  width: 100%;
 }
 
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
+@media (min-width: 36rem) {
+  .controles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .campo:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .controles button {
+    width: auto;
+    justify-self: start;
+  }
 }
 
-:focus-visible {
-  outline: 2px solid #545454;
-  outline-offset: 2px;
+@media (min-width: 56rem) {
+  .controles {
+    grid-template-columns: minmax(14rem, 2fr) repeat(2, minmax(9rem, 1fr)) auto;
+    gap: 1rem;
+  }
+
+  .campo:first-child {
+    grid-column: auto;
+  }
 }

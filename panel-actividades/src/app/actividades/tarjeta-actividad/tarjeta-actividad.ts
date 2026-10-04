@@ -1,5 +1,5 @@
 import { Component, computed, input, output } from '@angular/core';
-import { Actividad, ETIQUETAS } from '../../modelos/actividad';
+import { Actividad, ETIQUETAS } from '../../modelos/actividad/actividad';
 
 @Component({
   selector: 'app-tarjeta-actividad',
