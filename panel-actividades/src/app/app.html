@@ -1,5 +1,39 @@
 <header class="cabecera">
   <h1>Panel de actividades</h1>
+  <nav aria-label="Principal">…</nav>
+
+  <div class="contenedor">
+    <p class="marca">Panel de actividades</p>
+
+    <nav aria-label="Principal">
+      <ul class="menu">
+        <li><a routerLink="/actividades">Actividades</a></li>
+        <li><a routerLink="/estadisticas">Estadísticas</a></li>
+      </ul>
+    </nav>
+  </div>
+
+</header>
+<main id="contenido" class="contenedor">
+  <h1>Panel de actividades</h1>
+
+  <router-outlet />
+</main>
+
+<!--
+<main>
+  <app-pagina-actividades />
+  <app-pagina-estadisticas />
+  <router-outlet />
+</main>
+-->
+
+<!--
+  Este archivo contiene la plantilla principal de la aplicación.
+  Se define la estructura básica de la interfaz de usuario, incluyendo el encabezado y el área principal donde se mostrarán las páginas correspondientes a las rutas definidas en app.routes.ts.
+  La navegación se realiza mediante enlaces que utilizan el routerLink para cambiar de página sin recargar la aplicación.
+<header class="cabecera">
+  <h1>Panel de actividades</h1>
 
   <nav aria-label="Principal">
     <ul>
@@ -21,3 +55,4 @@
   <app-pagina-estadisticas />
   <router-outlet />
 </main>
+-->
