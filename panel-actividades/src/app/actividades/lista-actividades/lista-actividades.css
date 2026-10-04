@@ -61,3 +61,10 @@
   text-align: center;
   color: #52606d;
 }
+
+.enlace-detalle {
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+

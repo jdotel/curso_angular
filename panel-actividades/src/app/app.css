@@ -58,3 +58,8 @@ button:focus-visible {
 .menu a {
   color: inherit;
 }
+
+.menu a.activo {
+  font-weight: 700;
+  text-decoration: underline;
+}

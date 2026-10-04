@@ -52,16 +52,8 @@
       (eliminacionSolicitada)="eliminar($event)"
       (limpiezaSolicitada)="limpiarFiltros()" />
     </app-panel-seccion>
-
-
 </section>
-<!--
-<nav class="filtros" aria-label="Filtros de estado">
-  <a routerLink="/actividades" [queryParams]="{ estado: null }" queryParamsHandling="merge">Todas</a>
-  <a routerLink="/actividades" [queryParams]="{ estado: 'pendientes' }" queryParamsHandling="merge">Pendientes</a>
-  <a routerLink="/actividades" [queryParams]="{ estado: 'completadas' }" queryParamsHandling="merge">Completadas</a>
-</nav>
--->
+
 
 <nav class="filtros" aria-label="Filtros de estado">
   <a routerLink="/actividades" [queryParams]="{ estado: null }" queryParamsHandling="merge" routerLinkActive="activo"
@@ -72,3 +64,11 @@
 </nav>
 
 <app-lista-actividades [actividades]="visibles()" [mensajeVacio]="mensajeVacio()" />
+
+<app-filtros-actividades
+      [termino]="termino()"
+      (terminoChange)="cambiarBuscar($event)"
+      [estado]="filtroEstado()"
+      (estadoChange)="cambiarEstado($event)"
+      [prioridad]="filtroPrioridad()"
+      (prioridadChange)="cambiarPrioridad($event)" />

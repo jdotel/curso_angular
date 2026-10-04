@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './actividad.css',
   templateUrl: './actividad.html',
 })
+
 export class Actividad {
   id!: number;
 }
@@ -18,6 +19,7 @@ export const ETIQUETAS: Record<EstadoActividad, string> = {
   en_progreso: 'En progreso',
   completada: 'Completada',
 };
+
 function esRegistro(valor: unknown): valor is Record<string, unknown> {
   return typeof valor === 'object' && valor !== null && !Array.isArray(valor);
 }
@@ -57,3 +59,15 @@ export function esColeccionActividades(valor: unknown): valor is Actividad[] {
 
   return true;
 }
+
+export interface Actividad {
+  id: number;
+  titulo: string;
+  estado: EstadoActividad;
+  prioridad: Prioridad;
+  creadaEn: string;
+  destacada: boolean;
+}
+
+export type FiltroEstado = EstadoActividad | 'todas';
+export type FiltroPrioridad = Prioridad | 'todas';
