@@ -1,19 +1,15 @@
-<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
-
 <header class="cabecera">
-  <div class="contenedor">
-    <p class="marca">Panel de actividades</p>
-  </div>
+  <h1>Panel de actividades</h1>
+
+  <nav aria-label="Principal">
+    <ul>
+      <li><a routerLink="/actividades">Actividades</a></li>
+      <li><a routerLink="/estadisticas">Estadísticas</a></li>
+      <li><a routerLink="/papelera">Papelera</a></li>
+    </ul>
+  </nav>
 </header>
 
-<main id="contenido" class="contenedor">
-  <h1>Panel de actividades</h1>
-  <app-resumen-actividades />
-  <app-lista-actividades />
-  <app-pagina-actividades />
-  <app-pagina-estadisticas />
-
-
+<main>
+  <router-outlet />
 </main>
-
-<router-outlet />
