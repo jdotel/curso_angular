@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   imports: [],
   selector: 'app-actividad',
@@ -19,6 +20,14 @@ export const ETIQUETAS: Record<EstadoActividad, string> = {
   en_progreso: 'En progreso',
   completada: 'Completada',
 };
+
+// modelos/actividad.ts
+export const LIMITES = {
+  tituloMin: 3,
+  tituloMax: 80,
+  descripcionMax: 300,
+} as const;
+
 
 function esRegistro(valor: unknown): valor is Record<string, unknown> {
   return typeof valor === 'object' && valor !== null && !Array.isArray(valor);
@@ -60,6 +69,7 @@ export function esColeccionActividades(valor: unknown): valor is Actividad[] {
   return true;
 }
 
+// modelos/actividad.ts — el dominio, con el campo que gana en este módulo
 export interface Actividad {
   id: number;
   titulo: string;
@@ -67,7 +77,15 @@ export interface Actividad {
   prioridad: Prioridad;
   creadaEn: string;
   destacada: boolean;
+  descripcion: string;        // nuevo
 }
+
 
 export type FiltroEstado = EstadoActividad | 'todas';
 export type FiltroPrioridad = Prioridad | 'todas';
+/* export interface DatosNuevaActividad {
+  titulo: string;
+  descripcion: string;
+  prioridad: Prioridad;
+}
+ */
