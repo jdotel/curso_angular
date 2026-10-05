@@ -1,0 +1,37 @@
+<section class="pagina" aria-labelledby="titulo-pagina">
+  <h2 id="titulo-pagina">Tablero de actividades</h2>
+
+  <nav class="filtros" aria-label="Filtros rápidos de estado">
+    <a
+      routerLink="/actividades"
+      [queryParams]="{ estado: null }"
+      queryParamsHandling="merge"
+      routerLinkActive="activo"
+      [routerLinkActiveOptions]="{ exact: true }"
+      ariaCurrentWhenActive="page"
+    >Todas</a>
+    <a
+      routerLink="/actividades"
+      [queryParams]="{ estado: 'pendiente' }"
+      queryParamsHandling="merge"
+      routerLinkActive="activo"
+      ariaCurrentWhenActive="page"
+    >Pendientes</a>
+  </nav>
+
+  <app-filtros-actividades
+    [termino]="termino()"
+    (terminoChange)="cambiarBuscar($event)"
+    [estado]="filtroEstado()"
+    (estadoChange)="cambiarEstado($event)"
+    [prioridad]="filtroPrioridad()"
+    (prioridadChange)="cambiarPrioridad($event)"
+  />
+
+  <app-lista-actividades
+    [actividades]="visibles()"
+    [mensajeVacio]="mensajeVacio()"
+    [hayFiltros]="hayFiltros()"
+    (limpiezaSolicitada)="limpiarFiltros()"
+  />
+</section>

@@ -1,0 +1,7 @@
+fundamentos_ts/src/
+├── tipos.ts        el contrato: qué es una actividad
+├── datos.ts        las cuatro actividades de ejemplo
+├── resumen.ts      calcular y presentar
+├── gestor.ts       buscar y completar sin mutar
+├── validacion.ts   la frontera: comprobar lo que llega de fuera
+└── main.ts         el recorrido completo

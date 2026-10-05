@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Actividad</title>
+</head>
+
+<body>
+
+  <form (submit)="crear($event)" novalidate>
+    <h2>Nueva actividad</h2>
+
+    <div class="campo" [class.campo--error]="errorTitulo()">
+      <label for="titulo">Título</label>
+
+      <input id="titulo" type="text" [formField]="f.titulo" [attr.aria-invalid]="errorTitulo()"
+        aria-describedby="titulo-ayuda">
+
+      <p id="titulo-ayuda" class="ayuda">
+        @if (errorTitulo()) {
+        <span class="error">{{ f.titulo().errors()[0].message }}</span>
+        } @else {
+        Entre {{ limites.tituloMin }} y {{ limites.tituloMax }} caracteres.
+        }
+      </p>
+    </div>
+
+   <!--  <div class="campo" [class.campo--error]="f.titulo().touched() && !f.titulo().valid()">
+      <label for="titulo">Título</label>
+
+      <input id="titulo" type="text" [formField]="f.titulo"
+        [attr.aria-invalid]="f.titulo().touched() && !f.titulo().valid()" aria-describedby="titulo-ayuda">
+
+      <p id="titulo-ayuda" class="ayuda">
+        @if (f.titulo().touched() && !f.titulo().valid()) {
+        <span class="error">El título debe tener entre 3 y 80 caracteres.</span>
+        } @else {
+        Te quedan {{ restantes() }} caracteres.
+        }
+      </p>
+    </div> -->
+    <!--  <div class="campo">
+      <label for="titulo">Título</label>
+      <input id="titulo" type="text" [formField]="f.titulo">
+      <p class="ayuda">Te quedan {{ restantes() }} caracteres.</p>
+    </div>
+ -->
+    <div class="campo">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" rows="3" [formField]="f.descripcion"></textarea>
+    </div>
+
+    <fieldset class="campo">
+      <legend>Prioridad</legend>
+
+      <label><input type="radio" value="baja" [formField]="f.prioridad"> Baja</label>
+      <label><input type="radio" value="media" [formField]="f.prioridad"> Media</label>
+      <label><input type="radio" value="alta" [formField]="f.prioridad"> Alta</label>
+    </fieldset>
+
+    <div class="acciones">
+      <button type="submit">Crear actividad</button>
+      <a routerLink="/actividades">Cancelar</a>
+    </div>
+  </form>
+</body>
+
+</html>
