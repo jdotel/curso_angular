@@ -25,6 +25,7 @@
 @case ('encontrada') {
 @if (actividad(); as a) {
 <article class="detalle">
+
   <h2>{{ a.titulo }}</h2>
   <p>Prioridad {{ a.prioridad }}</p>
   <p>{{ etiquetas[a.estado] }}</p>
@@ -32,6 +33,7 @@
   <button type="button" [attr.aria-label]="'Eliminar ' + a.titulo" (click)="eliminar()">
     Eliminar
   </button>
+
 </article>
 }
 }
